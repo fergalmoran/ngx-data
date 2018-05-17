@@ -1,0 +1,37 @@
+<div class="control-panel">
+    <div class="button-panel">
+        <button mat-raised-button
+                color="primary"
+                type="button"
+                (click)="getPodcasts()"
+                matTooltip="Refresh the heroes">Refresh</button>
+        <button mat-raised-button
+                color="primary"
+                type="button"
+                (click)="enableAddMode()"
+                *ngIf="!selected"
+                matTooltip="Add a new hero">Add</button>
+    </div>
+</div>
+<div class="content-container">
+    <div class="list-container">
+        <div *ngIf="podcasts$ | async as podcasts">
+            <mat-spinner *ngIf="loading$ | async;else podcastList"
+                         mode="indeterminate"
+                         color="accent"></mat-spinner>
+            <ng-template #podcastList>
+
+                <app-podcast-list [podcasts]="podcasts"
+                                  [selectedPodcast]="selected"
+                                  [commands]="commands"></app-podcast-list>
+
+            </ng-template>
+        </div>
+    </div>
+    <div class="detail-container">
+        <app-podcast-detail *ngIf="selected"
+                            [podcast]="selected"
+                            [commands]="commands">
+        </app-podcast-detail>
+    </div>
+</div>

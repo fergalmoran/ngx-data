@@ -1,0 +1,61 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Podcast Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="form"
+              (ngSubmit)="savePodcast()">
+            <div class="editfields">
+                <div [hidden]="addMode">
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="id"
+                               placeholder="id"
+                               #id
+                               readonly>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="title"
+                               placeholder="title"
+                               #title
+                               (keyup.esc)="close()"
+                               (keyup.enter)="savePodcast()">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput
+                               formControlName="slug"
+                               placeholder="slug"
+                               #slug
+                               (keyup.esc)="close()"
+                               (keyup.enter)="savePodcast()">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <textarea matInput
+                                  formControlName="description"
+                                  placeholder="descriptiom"
+                                  #description
+                                  (keyup.esc)="close()"
+                                  (keyup.enter)="savePodcast()"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-raised-button
+                    color="accent"
+                    type="button"
+                    (click)="close()"
+                    matTooltip="Cancel all changes">Cancel</button>
+            <button mat-raised-button
+                    color="primary"
+                    type="submit"
+                    [disabled]="form.pristine || form.invalid"
+                    matTooltip="Save all changes">Save</button>
+        </form>
+    </mat-card-content>
+</mat-card>

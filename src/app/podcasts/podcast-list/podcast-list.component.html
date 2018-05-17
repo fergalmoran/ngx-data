@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Podcasts</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <ul class="heroes">
+            <li *ngFor="let podcast of podcasts; trackBy: byId"
+                class="item-container">
+                <button mat-button
+                        mat-suffix
+                        mat-icon-button
+                        color="accent"
+                        class="delete-button"
+                        aria-label="Delete"
+                        (click)="deletePodcast(podcast)"
+                        matTooltip="Delete the hero">
+                    <mat-icon>delete</mat-icon>
+                </button>
+                <div class="selectable-item"
+                     [class.selected]="podcast === selectedPodcast"
+                     (click)="onSelect(podcast)">
+                    <div class="badge">{{podcast.id}}</div>
+                    <div class="item-text">
+                        <div class="name">{{podcast.slug}}</div>
+                        <div class="saying">{{podcast.title}}</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>
